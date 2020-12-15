@@ -41,11 +41,18 @@ class ItemStats extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.playerHero !== this.props.playerhero || prevProps.teammate1 !== this.props.teammate1 || prevProps.teammate2 !== this.props.teammate2 || prevProps.teammate3 !== this.props.teammate3 || prevProps.teammate4 !== this.props.teammate4 || prevProps.enemyHero1 !== this.props.enemyHero1 || prevProps.enemyHero2 !== this.props.enemyHero2 || prevProps.enemyHero3 !== this.props.enemyHero3 || prevProps.enemyHero4 !== this.props.enemyHero4 || prevProps.enemyHero5 !== this.props.enemyHero5) {
+            this.forceUpdate()
+        }
+    }
+
 
     render() {
             return (
                 <div>
-                    <button>Show Item Stats</button><br></br>
+                    {console.log('PROPS IN ITEMS', this.props)}
+                    <button onClick={() => { this.findMatches(this.state.team1, this.state.team2) }}>Show Item Stats</button><br></br>
                     <h3>Provide the heros to see the items</h3>
                     {console.log(this.props)}
                 </div>
