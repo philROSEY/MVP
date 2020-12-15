@@ -13,6 +13,12 @@ class ItemStats extends React.Component {
 
     findMatches(team1, team2) {
         axios.get(`https://api.opendota.com/api/findmatches?api_key=33be2e86-1af6-40f5-8113-0fa8430369d7&teamA=[]=${team1[0]}, ${team1[1]}, ${team1[2]}, ${team1[3]}, ${team1[4]}&teamB=[]=${team2[0]}, ${team2[1]}, ${team2[2]}, ${team2[3]}, ${team2[4]} `)
+        .then((data) => {
+            var matchArr = [];
+            for (var i = 0; i < data.length; i++) {
+                matchArr.push(data[i].match_id)
+            }
+        })
     }
 
 
