@@ -1,7 +1,7 @@
 import React from 'react'
 var heroSelector = (name) => {
     return (
-        <select className={`${name}`}>
+        <select className={`${name}`} onChange={(e) => {console.log('CHANGED', e.target.value)}}>
             <option>Abbadon</option>
             <option>Alchemist</option>
             <option>Ancient Apparation</option>

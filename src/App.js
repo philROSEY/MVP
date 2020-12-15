@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import heroSelector from '../heroSelector.jsx'
 import ItemStats from './items/items.js'
 import apiKey from '../apiKey.js'
+import heroIdObj from '../heroIds.js'
 
 class App extends React.Component {
     constructor() {
@@ -26,8 +27,15 @@ class App extends React.Component {
 
 
     }
-
-
+  addHero(player, hero) {
+    this.setState ({
+        teams: {
+            ...prevState.teams,
+            [player]: heroIdObj[hero]  
+        },
+        displayItems: this.state.displayItems
+    })
+  }
 
 
 
@@ -42,7 +50,7 @@ class App extends React.Component {
         <h3>
             Your Team:
         </h3>
-        <label for='playerHero'>Your hero:</label>
+        <label for='playerHero'>Your Hero:</label>
         {heroSelector('playerHero')}<br></br>
         <label for='teammate1'>Ally Hero:</label>
         {heroSelector('teammate1')}<br></br>
