@@ -45,6 +45,7 @@ class ItemStats extends React.Component {
     render() {
             return (
                 <div>
+                    <button>Show Item Stats</button><br></br>
                     <h3>Provide the heros to see the items</h3>
                     {console.log(this.props)}
                 </div>

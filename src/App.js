@@ -73,7 +73,6 @@ class App extends React.Component {
         {heroSelector('teammate4')}<br></br>
         <label for='enemyHero5'>Enemy Hero:</label>
         {heroSelector('enemyHero5')}<br></br>
-      <button>Show Item Stats</button><br></br>
       <ItemStats heros={this.state.teams}/>
     </div>
     );
