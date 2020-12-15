@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import heroIdObj from '../../heroIds.js'
 
 class ItemStats extends React.Component {
     constructor(props) {
@@ -9,11 +10,12 @@ class ItemStats extends React.Component {
 
 
     render() {
-        return (
-            <div>
-                {console.log(this.props)}
-            </div>
-        )
+            return (
+                <div>
+                    <h3>Provide the heros to see the items</h3>
+                    {console.log(this.props)}
+                </div>
+            )
     }
 }
 

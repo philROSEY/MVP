@@ -3,6 +3,7 @@ import React from "react";
 import { hot } from 'react-hot-loader/root';
 import heroSelector from '../heroSelector.jsx'
 import ItemStats from './items/items.js'
+import apiKey from '../apiKey.js'
 
 class App extends React.Component {
     constructor() {

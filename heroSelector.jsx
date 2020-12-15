@@ -56,6 +56,7 @@ var heroSelector = (name) => {
             <option>Luna</option>
             <option>Lycan</option>
             <option>Magnus</option>
+            <option>Mars</option>
             <option>Medusa</option>
             <option>Meepo</option>
             <option>Mirana</option>
