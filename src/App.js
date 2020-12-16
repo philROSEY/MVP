@@ -175,19 +175,21 @@ class App extends React.Component {
         <h1>
           Dota 2 Domninator
         </h1>
-        <h3>
-            Your Team
-        </h3>
-        <label for='playerHero'>Your Hero:</label>
-        {this.heroSelector('playerHero')}<br></br><br></br>
-        <label for='teammate1'>Ally Hero:</label>
-        {this.heroSelector('teammate1')}<br></br><br></br>
-        <label for='teammate2'>Ally Hero:</label>
-        {this.heroSelector('teammate2')}<br></br><br></br>
-        <label for='teammate3'>Ally Hero:</label>
-        {this.heroSelector('teammate3')}<br></br><br></br>
-        <label for='teammate4'>Ally Hero:</label>
-        {this.heroSelector('teammate4')}<br></br><br></br>
+        <div className='allyTeam'>
+            <h3 className='allyTitle'>
+                Your Team
+            </h3>
+            <label for='playerHero'>Your Hero:</label>
+            {this.heroSelector('playerHero')}<br></br><br></br>
+            <label for='teammate1'>Ally Hero:</label>
+            {this.heroSelector('teammate1')}<br></br><br></br>
+            <label for='teammate2'>Ally Hero:</label>
+            {this.heroSelector('teammate2')}<br></br><br></br>
+            <label for='teammate3'>Ally Hero:</label>
+            {this.heroSelector('teammate3')}<br></br><br></br>
+            <label for='teammate4'>Ally Hero:</label>
+            {this.heroSelector('teammate4')}<br></br><br></br>
+        </div>
         <div className='enemyTeam'>
         <h3 className='enemyTitle'>Enemy Team</h3>
             <div className='enemyChoices'>

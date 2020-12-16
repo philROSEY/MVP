@@ -2,12 +2,19 @@
 .theTeams {
     position: absolute;
 }
-
+.allyTitle {
+    text-align: center;
+}
+.allyTeam {
+    position: relative;
+    border: 1px solid black;
+    padding: 5px;
+}
 .enemyTeam {
     position: relative;
     border: 1px solid black;
-    left: 30px;
-    height: 170px;
+    left: 400px;
+    top: -258px;
     padding: 5px;
 }
 
@@ -19,7 +26,7 @@
     position: relative;
 }
 
-.itemSugs {
-    position: absolute;
-    top: 200px;
+.itemsSugs {
+    position: relative;
+    top: -200px;
 }
