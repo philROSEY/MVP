@@ -32,7 +32,7 @@ class App extends React.Component {
             <select className={`${name}`} onChange={(e) => { this.addHero(name, e.target.value), console.log('heroSelector Ran')}}>
                 <option>Abaddon</option>
                 <option>Alchemist</option>
-                <option>Ancient Apparation</option>
+                <option>Ancient Apparition</option>
                 <option>Anti-Mage</option>
                 <option>Arc Warden</option>
                 <option>Axe</option>
@@ -88,7 +88,7 @@ class App extends React.Component {
                 <option>Medusa</option>
                 <option>Meepo</option>
                 <option>Mirana</option>
-                <option>Minkey King</option>
+                <option>Monkey King</option>
                 <option>Morphling</option>
                 <option>Naga Siren</option>
                 <option>Nature's Prophet</option>
@@ -171,7 +171,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='theTeams'>
         <h1>
           Dota 2 Domninator
         </h1>
@@ -191,6 +191,7 @@ class App extends React.Component {
         <h3>
             Enemy Team:
         </h3>
+        <div className='enemyTeam'>
         <label for='enemyHero1'>Enemy Hero:</label>
         {this.heroSelector('enemyHero1')}<br></br>
         <label for='enemyHero2'>Enemy Hero:</label>
@@ -201,6 +202,7 @@ class App extends React.Component {
         {this.heroSelector('enemyHero4')}<br></br>
         <label for='enemyHero5'>Enemy Hero:</label>
         {this.heroSelector('enemyHero5')}<br></br>
+        </div>
       <ItemStats heros={this.state.teams}/>
     </div>
     );

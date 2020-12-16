@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import heroIdObj from '../../heroIds.js'
+import betterIds from '../../itemIds.js'
+import itemImgs from '../../itemImages'
 
 class ItemStats extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teamA: [this.props.heros.playerHero, this.props.heros.teammate1, this.props.heros.teammate2, this.props.heros.teammate3, this.props.heros.teammate4],
-            teamB: [this.props.heros.enemyHero1, this.props.heros.enemyHero2, this.props.heros.enemyHero3, this.props.heros.enemyHero4, this.props.heros.enemyHero5],
             items: []
         };
 
@@ -16,62 +16,61 @@ class ItemStats extends React.Component {
     findMatches() {
         var team1 = [this.props.heros.playerHero, this.props.heros.teammate1, this.props.heros.teammate2, this.props.heros.teammate3, this.props.heros.teammate4]
         var team2 = [this.props.heros.enemyHero1, this.props.heros.enemyHero2, this.props.heros.enemyHero3, this.props.heros.enemyHero4, this.props.heros.enemyHero5]
-        console.log('TEAM 1', team1, 'TEAM 2', team2)
         // var matchCounter = 0
         axios.get(`https://api.opendota.com/api/findmatches?api_key=33be2e86-1af6-40f5-8113-0fa8430369d7&teamA=[]=${team1[0]}, ${team1[1]}, ${team1[2]}, ${team1[3]}, ${team1[4]}&teamB=[]=${team2[0]}, ${team2[1]}, ${team2[2]}, ${team2[3]}, ${team2[4]} `)
         .then((response) => {
-            console.log('DATA RECIEVED FROM FIRST REQUEST', response)
             var matchArr = [];
             var matchData = []
             for (var i = 0; i < response.data.length; i++) {
                 matchArr.push(response.data[i].match_id)
             }
-            console.log('THE MATCH ARRAY', matchArr)
             return Promise.all(matchArr.map((matchId) => {
                 return axios.get(`https://api.opendota.com/api/matches/${matchId}?api_key=33be2e86-1af6-40f5-8113-0fa8430369d7`)
 
             }))
             .then((detailedMatchArr) => {
-                console.log(detailedMatchArr)
+                var matches = []
+                for (var i =0; i< detailedMatchArr.length; i++) {
+                    matches.push(detailedMatchArr[i].data)
+                }
+                console.log('matches', matches)
+                var items = []
+                var counter = 0
+                for (var i = 0; i < matches.length; i++) {
+                    for (var j = 0; j < matches[i].players.length; j++) {
+                        if (matches[i].players[j].hero_id === team1[0]) {
+                            counter++
+                            items.push([matches[i].players[j].win, matches[i].players[j].item_0, matches[i].players[j].item_1, matches[i].players[j].item_2, matches[i].players[j].item_3, matches[i].players[j].item_4, matches[i].players[j].item_5])
+                        }
+                    }
+                }
+                console.log('final array', items)
+                this.setState({
+                    items: items
+                })
             })
-            // for (var i = 0; i < matchArr.length; i++) {
-            //     axios.get(`https://api.opendota.com/api/matches/${matchArr[i]}?api_key=33be2e86-1af6-40f5-8113-0fa8430369d7`)
-            //     .then((response) => {
-            //         console.log('DATA RECEIVED FROM SECOND REQUEST', response)
-                    // for (var i = 0; i < response.data.players.length; i++){
-                    //     if (response.data.players[i].hero_id === team1[0]) {
-                    //         console.log('PLAYERS FIRST ITEM', response.data.players[i].item_0)
-                    //         matchData.push([response.data.players[i].win, response.data.players[i].item_0, response.data.players[i].item_1, response.data.players[i].item_2, response.data.players[i].item_3, response.data.players[i].item_4, response.data.players[i].item_5])
-                    //     }
-                    // }
-                    // if (matchData.length === matchArr.length) {
-                    //     console.log('THE ARRAY TO WORK WITH', matchData)
-                    //     var finalObj = {}
-                    //     return;
-                    // }
-                // })
-                // .catch((err) => {
-                //     console.log('ERROR IN SECOND DATA REQUEST', err.message)
-                // })
-        //     }
         })
         .catch((err) => {
             console.log('ERROR IN DATA REQUEST', err.message)
         })
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.playerHero !== this.props.playerhero || prevProps.teammate1 !== this.props.teammate1 || prevProps.teammate2 !== this.props.teammate2 || prevProps.teammate3 !== this.props.teammate3 || prevProps.teammate4 !== this.props.teammate4 || prevProps.enemyHero1 !== this.props.enemyHero1 || prevProps.enemyHero2 !== this.props.enemyHero2 || prevProps.enemyHero3 !== this.props.enemyHero3 || prevProps.enemyHero4 !== this.props.enemyHero4 || prevProps.enemyHero5 !== this.props.enemyHero5) {
-    //         this.setState({
-    //             teamA: [this.props.playerHero, this.props.teammate1, this.props.teammate2, this.props.teammate3, this.props.teammate4],
-    //             teamB: [this.props.enemyHero1, this.props.enemyHero2, this.props.enemyHero3, this.props.enemyHero4, this.props.enemyHero5],
-    //             items: this.state.items
-    //         })
-    //     }
-    // }
+    winLoss (num) {
+        if (num === 1) {
+            return 'Victory'
+        } else {
+            return 'Defeat'
+        }
+    }
 
+    convertItem (num) {
+        return betterIds[num]
+    }
 
     render() {
+        console.log('STATE IN ITEMS', this.state.items)
+        var checker = this.state.items
+        if (checker.length === 0) {
             return (
                 <div>
                     {console.log('PROPS IN ITEMS', this.props)}
@@ -80,6 +79,28 @@ class ItemStats extends React.Component {
                     {console.log(this.props)}
                 </div>
             )
+        } else {
+            return (
+                <div>
+                     <button onClick={() => { this.findMatches(this.state.team1, this.state.team2) }}>Show Item Stats</button><br></br>
+                    {this.state.items.map((game, index) => {
+                        return (
+                            <div key={index}>
+                            <h4>
+                                {this.winLoss(game[0])}
+                            </h4>
+                            <plaintext>{this.convertItem(game[1])}</plaintext><img src={itemImgs[game[1]]}></img><br></br>
+                            <plaintext>{this.convertItem(game[2])}</plaintext><img src={itemImgs[game[2]]}></img><br></br>
+                            <plaintext>{this.convertItem(game[3])}</plaintext><img src={itemImgs[game[3]]}></img><br></br>
+                            <plaintext>{this.convertItem(game[4])}</plaintext><img src={itemImgs[game[4]]}></img><br></br>
+                            <plaintext>{this.convertItem(game[5])}</plaintext><img src={itemImgs[game[5]]}></img><br></br>
+                            <plaintext>{this.convertItem(game[6])}</plaintext><img src={itemImgs[game[6]]}></img><br></br>
+                            </div>
+                        )
+                    })}
+                </div>
+            )
+        }
     }
 }
 
