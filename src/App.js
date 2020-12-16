@@ -176,32 +176,32 @@ class App extends React.Component {
           Dota 2 Domninator
         </h1>
         <h3>
-            Your Team:
+            Your Team
         </h3>
         <label for='playerHero'>Your Hero:</label>
-        {this.heroSelector('playerHero')}<br></br>
+        {this.heroSelector('playerHero')}<br></br><br></br>
         <label for='teammate1'>Ally Hero:</label>
-        {this.heroSelector('teammate1')}<br></br>
+        {this.heroSelector('teammate1')}<br></br><br></br>
         <label for='teammate2'>Ally Hero:</label>
-        {this.heroSelector('teammate2')}<br></br>
+        {this.heroSelector('teammate2')}<br></br><br></br>
         <label for='teammate3'>Ally Hero:</label>
-        {this.heroSelector('teammate3')}<br></br>
+        {this.heroSelector('teammate3')}<br></br><br></br>
         <label for='teammate4'>Ally Hero:</label>
-        {this.heroSelector('teammate4')}<br></br>
-        <h3>
-            Enemy Team:
-        </h3>
+        {this.heroSelector('teammate4')}<br></br><br></br>
         <div className='enemyTeam'>
-        <label for='enemyHero1'>Enemy Hero:</label>
-        {this.heroSelector('enemyHero1')}<br></br>
-        <label for='enemyHero2'>Enemy Hero:</label>
-        {this.heroSelector('enemyHero2')}<br></br>
-        <label for='enemyHero3'>Enemy Hero:</label>
-        {this.heroSelector('enemyHero3')}<br></br>
-        <label for='enemyHero4'>Enemy Hero:</label>
-        {this.heroSelector('enemyHero4')}<br></br>
-        <label for='enemyHero5'>Enemy Hero:</label>
-        {this.heroSelector('enemyHero5')}<br></br>
+        <h3 className='enemyTitle'>Enemy Team</h3>
+            <div className='enemyChoices'>
+                <label className='enemyHero' for='enemyHero1'>Enemy Hero:</label>
+                {this.heroSelector('enemyHero1')}<br></br><br></br>
+                <label className='enemyHero' for='enemyHero2'>Enemy Hero:</label>
+                {this.heroSelector('enemyHero2')}<br></br><br></br>
+                <label className='enemyHero' for='enemyHero3'>Enemy Hero:</label>
+                {this.heroSelector('enemyHero3')}<br></br><br></br>
+                <label className='enemyHero' for='enemyHero4'>Enemy Hero:</label>
+                {this.heroSelector('enemyHero4')}<br></br><br></br>
+                <label className='enemyHero' for='enemyHero5'>Enemy Hero:</label>
+                {this.heroSelector('enemyHero5')}<br></br><br></br>
+            </div>
         </div>
       <ItemStats heros={this.state.teams}/>
     </div>

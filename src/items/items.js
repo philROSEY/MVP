@@ -72,8 +72,7 @@ class ItemStats extends React.Component {
         var checker = this.state.items
         if (checker.length === 0) {
             return (
-                <div>
-                    {console.log('PROPS IN ITEMS', this.props)}
+                <div className='itemsSugs'>
                     <button onClick={() => { this.findMatches(this.state.team1, this.state.team2) }}>Show Item Stats</button><br></br>
                     <h3>Provide the heros to see the items</h3>
                     {console.log(this.props)}
@@ -81,7 +80,7 @@ class ItemStats extends React.Component {
             )
         } else {
             return (
-                <div>
+                <div className='itemSugs'>
                      <button onClick={() => { this.findMatches(this.state.team1, this.state.team2) }}>Show Item Stats</button><br></br>
                     {this.state.items.map((game, index) => {
                         return (
