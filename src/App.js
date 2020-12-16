@@ -198,7 +198,7 @@ class App extends React.Component {
         <label for='enemyHero3'>Enemy Hero:</label>
         {this.heroSelector('enemyHero3')}<br></br>
         <label for='enemyHero4'>Enemy Hero:</label>
-        {this.heroSelector('teammate4')}<br></br>
+        {this.heroSelector('enemyHero4')}<br></br>
         <label for='enemyHero5'>Enemy Hero:</label>
         {this.heroSelector('enemyHero5')}<br></br>
       <ItemStats heros={this.state.teams}/>
